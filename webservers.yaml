@@ -1,0 +1,16 @@
+---
+- hosts: group1
+  tasks:
+  - name: Install nginx
+    apt:
+      name: nginx
+      state: present
+      when: ansible_of_family == "Ubuntu"
+
+- hosts: group2
+  tasks:
+ - name: Install apache
+   yum:
+     name: httpd
+     state: present
+     when: ansible_distribution  == 'Amazon'
