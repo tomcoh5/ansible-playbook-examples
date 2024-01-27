@@ -1,11 +1,12 @@
 ---
-hosts: all
-tasks:
- - name: creates users files
-   file:
-     path: /tmp/ansible-{{ item }}
-     state: touch
-   loop:
-   - sammy
-   - erika
-   - brian
+- name: create some files
+  hosts: all
+  tasks:
+   - name: creates users files
+     file:
+       path: /tmp/ansible-{{ item }}
+       state: touch
+     loop:
+       - apple12
+       - banana12
+       - watermelon12
