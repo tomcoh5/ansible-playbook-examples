@@ -1,16 +1,21 @@
 ---
-- hosts: group1
+- name: installing nginx and checking diskspace
+  hosts: group2
+  become: true
   tasks:
-  - name: Install nginx
-    apt:
-      name: nginx
-      state: present
-      when: ansible_of_family == "Ubuntu"
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
 
-- hosts: group2
+    - name: create file using shell
+      shell: touch /tmp/ansible-test-file-1
+
+- name: installing httpd in amazon linux machine
+  hosts: group1
+  become: true
   tasks:
- - name: Install apache
-   yum:
-     name: httpd
-     state: present
-     when: ansible_distribution  == 'Amazon'
+   - name: Install apache
+     dnf:
+       name: httpd
+       state: present
